@@ -41,7 +41,7 @@ ALIASCHECK=$(grep 'alias specget' /home/skyboxview/.bashrc)
 if [[ $ALIASCHECK != "" ]]; then
         echo "$DATE [INFO] - specget alias already exists.  Skipping..."
 else
-	echo "alias specget=“grep ‘routing table speculation’ /opt/skyboxview/server/log/server.log | awk -F’speculation on’ ‘{print " >> /home/skyboxview/.bashrc
+	echo "alias specget=\"grep 'routing table speculation' /opt/skyboxview/server/log/server.log | awk -F'speculation on' '{print \\\$2}' | sort -u\"" >> /home/skyboxview/.bashrc
 fi
 
 CHECK=$(grep 'top -b | head -12' /home/skyboxview/.bashrc)
