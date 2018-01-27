@@ -51,6 +51,20 @@ else
 	echo "top -b | head -12" >> /home/skyboxview/.bashrc
 	echo "echo \"-------------\"" >> /home/skyboxview/.bashrc
 	echo "get_appliance_details" >> /home/skyboxview/.bashrc
+	echo "" >> /home/skyboxview/.bashrc
+	echo "echo \"HDD and Power Supply Status: \"" >> /home/skyboxview/.bashrc
+	echo "sudo ipmitool sdr list | grep -E 'HDD|Pwr Unit'" >> /home/skyboxview/.bashrc
+	echo "" >> /home/skyboxview/.bashrc
+	echo "echo \"Recent System Event Log: \"" >> /home/skyboxview/.bashrc
+	echo "sudo ipmitool sel list | tail -5" >> /home/skyboxview/.bashrc
+	echo "" >> /home/skyboxview/.bashrc
+fi
+
+if [ ! -e "/etc/sudoers.d/ps-addon" ]; then
+	echo "$DATE [INFO] - Creating PS Sudoer"
+	echo "User_Alias PS_SKYBOX = skyboxview" > /etc/sudoers.d/ps-addon
+	echo "Cmnd_Alias IPMITOOL = /usr/bin/ipmitool sdr list,/usr/bin/ipmitool sel list" >> /etc/sudoers.d/ps-addon
+	echo "PS_SKYBOX  ALL=NOPASSWD:IPMITOOL" >> /etc/sudoers.d/ps-addon
 fi
 
 echo "$DATE [INFO] - Script Complete"
