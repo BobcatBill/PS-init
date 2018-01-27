@@ -1,14 +1,27 @@
 DATE=$(date)
 ROLE=$(whoami)
 
+usage() { 
+	echo
+	echo "##################################################"
+	echo "## This script builds the custom PS directories,"
+	echo "## BASH aliases, and settings used commonly"
+	echo "## in deployments"
+	echo "##################################################"
+	echo
+	echo "Usage: $0 <CUSTOM_DIR_NAME>" 1>&2
+	echo
+	exit 1
+}
+
 if [[ $ROLE != "root" ]]; then
 	echo "$DATE [ERROR] - You must be root to run this script"
-	exit 1
+	usage
 fi
 
 if [[ $1 = "" ]]; then
 	echo "$DATE [ERROR] - No customer name supplied"
-	exit 1
+	usage
 fi
 
 echo "$DATE [INFO] - Creating customer directories for $1"
