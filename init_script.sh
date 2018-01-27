@@ -58,6 +58,8 @@ else
 	echo "echo \"\"" >> /home/skyboxview/.bashrc
 	echo "get_appliance_details" >> /home/skyboxview/.bashrc
 	echo "echo \"\"" >> /home/skyboxview/.bashrc
+	echo "echo \"Configured IPs: \" ; ip addr | grep -w inet | grep -v 127.0.0.1 | awk '{print \" \"\$2}'" >> /home/skyboxview/.bashrc
+        echo "echo \"\"" >> /home/skyboxview/.bashrc
 fi
 
 if [ ! -e "/etc/sudoers.d/ps-addon" ]; then
