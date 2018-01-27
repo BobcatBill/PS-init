@@ -44,5 +44,14 @@ else
 	echo "alias specget=“grep ‘routing table speculation’ /opt/skyboxview/server/log/server.log | awk -F’speculation on’ ‘{print " >> /home/skyboxview/.bashrc
 fi
 
+CHECK=$(grep 'top -b | head -12' /home/skyboxview/.bashrc)
+if [[ $CHECK != "" ]]; then
+	echo "$DATE [INFO] - top/appliance alias already exists.  Skipping..."
+else
+	echo "top -b | head -12" >> /home/skyboxview/.bashrc
+	echo "-------------" >> /home/skyboxview/.bashrc
+	echo "get_appliance_details" >> /home/skyboxview/.bashrc
+fi
+
 echo "$DATE [INFO] - Script Complete"
 exit 0
