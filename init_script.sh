@@ -53,10 +53,10 @@ else
 	echo "get_appliance_details" >> /home/skyboxview/.bashrc
 	echo "echo \"\"" >> /home/skyboxview/.bashrc
 	echo "echo \"HDD and Power Supply Status: \"" >> /home/skyboxview/.bashrc
-	echo "sudo ipmitool sdr list | grep --color=never -E 'HDD|Pwr Unit'" >> /home/skyboxview/.bashrc
+	echo "sudo ipmitool sdr list 2>/dev/null | grep --color=never -E 'HDD|Pwr Unit'" >> /home/skyboxview/.bashrc
 	echo "echo \"\"" >> /home/skyboxview/.bashrc
-	echo "echo \"Recent System Event Log: \"" >> /home/skyboxview/.bashrc
-	echo "sudo ipmitool sel list | tail -5" >> /home/skyboxview/.bashrc
+	echo "echo \"Recent Hardware Event Log: \"" >> /home/skyboxview/.bashrc
+	echo "sudo ipmitool sel list 2>/dev/null | tail -5" >> /home/skyboxview/.bashrc
 	echo "echo \"\"" >> /home/skyboxview/.bashrc
 fi
 
