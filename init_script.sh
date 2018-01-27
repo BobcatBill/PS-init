@@ -27,14 +27,14 @@ ALIASCHECK=$(grep 'alias sdebug' /home/skyboxview/.bashrc)
 if [[ $ALIASCHECK != "" ]]; then
 	echo "$DATE [INFO] - sdebug alias already exists.  Skipping..."
 else
-	echo "alias sdebug=‘tail -f /opt/skyboxview/server/log/debug/debug.log’" >> /home/skyboxview/.bashrc
+	echo "alias sdebug=\"tail -f /opt/skyboxview/server/log/debug/debug.log\"" >> /home/skyboxview/.bashrc
 fi
 
 ALIASCHECK=$(grep 'alias cdebug' /home/skyboxview/.bashrc)
 if [[ $ALIASCHECK != "" ]]; then
         echo "$DATE [INFO] - cdebug alias already exists.  Skipping..."
 else
-	echo "alias cdebug=‘tail -f /opt/skyboxview/collector/log/debug/debug.log’" >> /home/skyboxview/.bashrc
+	echo "alias cdebug=\"tail -f /opt/skyboxview/collector/log/debug/debug.log\"" >> /home/skyboxview/.bashrc
 fi
 
 ALIASCHECK=$(grep 'alias specget' /home/skyboxview/.bashrc)
@@ -49,7 +49,7 @@ if [[ $CHECK != "" ]]; then
 	echo "$DATE [INFO] - top/appliance alias already exists.  Skipping..."
 else
 	echo "top -b | head -12" >> /home/skyboxview/.bashrc
-	echo "-------------" >> /home/skyboxview/.bashrc
+	echo "echo \"-------------\"" >> /home/skyboxview/.bashrc
 	echo "get_appliance_details" >> /home/skyboxview/.bashrc
 fi
 
