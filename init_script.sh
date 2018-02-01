@@ -61,6 +61,7 @@ CHECK=$(grep 'top -b | head -12' /home/skyboxview/.bashrc)
 if [[ $CHECK != "" ]]; then
 	echo "$DATE [INFO] - top/appliance alias already exists.  Skipping..."
 else
+	echo "[ -z \"\$PS1\" ] \&\& return"
 	echo "top -b | head -12" >> /home/skyboxview/.bashrc
 	echo "echo \"\"" >> /home/skyboxview/.bashrc
 	echo "echo \"HDD and Power Supply Status: \"" >> /home/skyboxview/.bashrc
