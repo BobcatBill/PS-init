@@ -40,14 +40,14 @@ ALIASCHECK=$(grep 'alias sdebug' /home/skyboxview/.bashrc)
 if [[ $ALIASCHECK != "" ]]; then
 	echo "$DATE [INFO] - sdebug alias already exists.  Skipping..."
 else
-	echo "alias sdebug=\"tail -f /opt/skyboxview/server/log/debug/debug.log\"" >> /home/skyboxview/.bashrc
+	echo "alias sdebug=\"tail -F /opt/skyboxview/server/log/debug/debug.log\"" >> /home/skyboxview/.bashrc
 fi
 
 ALIASCHECK=$(grep 'alias cdebug' /home/skyboxview/.bashrc)
 if [[ $ALIASCHECK != "" ]]; then
         echo "$DATE [INFO] - cdebug alias already exists.  Skipping..."
 else
-	echo "alias cdebug=\"tail -f /opt/skyboxview/collector/log/debug/debug.log\"" >> /home/skyboxview/.bashrc
+	echo "alias cdebug=\"tail -F /opt/skyboxview/collector/log/debug/debug.log\"" >> /home/skyboxview/.bashrc
 fi
 
 ALIASCHECK=$(grep 'alias specget' /home/skyboxview/.bashrc)
