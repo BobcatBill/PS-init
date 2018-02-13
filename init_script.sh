@@ -61,19 +61,20 @@ CHECK=$(grep 'top -b | head -12' /home/skyboxview/.bashrc)
 if [[ $CHECK != "" ]]; then
 	echo "$DATE [INFO] - top/appliance alias already exists.  Skipping..."
 else
-	echo "[ -z \"\$PS1\" ] \&\& return"
-	echo "top -b | head -12" >> /home/skyboxview/.bashrc
-	echo "echo \"\"" >> /home/skyboxview/.bashrc
-	echo "echo \"HDD and Power Supply Status: \"" >> /home/skyboxview/.bashrc
-	echo "sudo ipmitool sdr list 2>/dev/null | grep --color=never -E 'HDD|Pwr Unit'" >> /home/skyboxview/.bashrc
-	echo "echo \"\"" >> /home/skyboxview/.bashrc
-	echo "echo \"Recent Hardware Event Log: \"" >> /home/skyboxview/.bashrc
-	echo "sudo ipmitool sel list 2>/dev/null | tail -5" >> /home/skyboxview/.bashrc
-	echo "echo \"\"" >> /home/skyboxview/.bashrc
-	echo "get_appliance_details" >> /home/skyboxview/.bashrc
-	echo "echo \"\"" >> /home/skyboxview/.bashrc
-	echo "echo \"Configured IPs: \" ; ip addr | grep -w inet | grep -v 127.0.0.1 | awk '{print \" \"\$2}'" >> /home/skyboxview/.bashrc
-        echo "echo \"\"" >> /home/skyboxview/.bashrc
+	echo "if shopt -q login_shell; then" >> /home/skyboxview/.bashrc
+	echo " top -b | head -12" >> /home/skyboxview/.bashrc
+	echo " echo \"\"" >> /home/skyboxview/.bashrc
+	echo " echo \"HDD and Power Supply Status: \"" >> /home/skyboxview/.bashrc
+	echo " sudo ipmitool sdr list 2>/dev/null | grep --color=never -E 'HDD|Pwr Unit'" >> /home/skyboxview/.bashrc
+	echo " echo \"\"" >> /home/skyboxview/.bashrc
+	echo " echo \"Recent Hardware Event Log: \"" >> /home/skyboxview/.bashrc
+	echo " sudo ipmitool sel list 2>/dev/null | tail -5" >> /home/skyboxview/.bashrc
+	echo " echo \"\"" >> /home/skyboxview/.bashrc
+	echo " get_appliance_details" >> /home/skyboxview/.bashrc
+	echo " echo \"\"" >> /home/skyboxview/.bashrc
+	echo " echo \"Configured IPs: \" ; ip addr | grep -w inet | grep -v 127.0.0.1 | awk '{print \" \"\$2}'" >> /home/skyboxview/.bashrc
+        echo " echo \"\"" >> /home/skyboxview/.bashrc
+	echo "fi" >> /home/skyboxview/.bashrc
 fi
 
 if [ ! -e "/etc/sudoers.d/ps-addon" ]; then
